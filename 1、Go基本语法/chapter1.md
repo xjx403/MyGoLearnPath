@@ -55,3 +55,63 @@ Print 和 Println 这两个函数也支持使用变量，如：fmt.Println(arr)�
   <p>str: E人e, len = 5 <p>
 
 - **指针类型**
+  > go指针类型的用法与C大同小异，区别在于声明变量时：
+  ```go
+  var p *int = 1
+  ```
+  ```C
+  int *p = 1;
+  ```
+- **结构体类型**
+  模板如下
+  ```go
+  type struct_variable_type struct {
+   member definition
+   member definition
+   ...
+   member definition
+  }
+  ```
+  ```go
+  //结构体方法模板
+    func (variable_name variable_data_type)function_name() [return_type]{
+    /* 函数体*/
+  }
+  ```
+  > 注意 结构体方法的调用虽然是 [声明后的结构体变量].function_name(), 但其本质还是**类似C语言函数**，方法传的结构体如果不是指针，则方法内对应的修改均不会影响调用结构体的内部变量。
+  - 补充，go函数
+  > 类似C语言函数，模板如下：
+  ```go
+  func function_name([parameter_list]) [return_type]{
+    /* 函数体*/
+  }
+  ```
+- 数组
+  ```go
+  var variable_value_name [nums_len] int
+  variable_value_name := [len]int{1,2,3,1}
+  var variable_value_name = [len]int{1,2,3,1}  
+  ```
+- 切片（Slipe）
+  > go的动态数组
+  - 声明切片
+     ```go
+     var name []type
+
+     // 用make()函数，声明切片的容量 len 为初始化长度，capacity为容量（可选）
+     name := make([]int, len {, capacity})
+     ```
+  - 切片的初始化
+    ```go
+    s :=[] int {1,2,3 } 
+    s := arr[:] 
+    s := arr[startIndex:endIndex] 
+    s := arr[startIndex:] 
+    s := arr[:endIndex] 
+    s1 := s[startIndex:endIndex] 
+    s :=make([]int,len,cap) 
+    ```
+  - 切片常用函数
+    `len()`,`cap()`:返回切片容量,`append()`：在数组后面添加元素，同时len增加，支持添加多个元素,`copy()`：切片复制,`make()`,
+- 范围（range）
+- Map
