@@ -113,5 +113,99 @@ Print 和 Println 这两个函数也支持使用变量，如：fmt.Println(arr)�
     ```
   - 切片常用函数
     `len()`,`cap()`:返回切片容量,`append()`：在数组后面添加元素，同时len增加，支持添加多个元素,`copy()`：切片复制,`make()`,
-- 范围（range）
+- 通道（chan）
+  > 类似于队列
 - Map
+  > 
+  ```go
+  //声明Map
+  var varName map[key_type]value_type
+  //例子
+	var m1 map[int]string
+	m1 = make(map[int]string)
+	m1[1] = "java"
+	fmt.Println("map1:", m1)
+
+	var m2 map[int]string = map[int]string{}
+	m2[1] = "go"
+	fmt.Println("map2:", m2)
+
+	m3 := map[int]string{
+		1:"C++",
+		2:"C",
+	}
+	fmt.Println("map3:", m3)
+
+	var m1 map[int]string
+	m1 = make(map[int]string)
+	m1[1] = "java"
+	fmt.Println("map1:", m1)
+
+	var m2 map[int]string = map[int]string{}
+	m2[1] = "go"
+	fmt.Println("map2:", m2)
+
+	m3 := map[int]string{
+		1:"C++",
+		2:"C",
+	}
+	fmt.Println("map3:", m3)
+
+	res := make(map[string]interface{})
+	res["code"] = 200
+	res["msg"] = "success"
+	res["data"] = map[string]interface{}{
+		"username" : "Tom",
+		"age" : "30",
+		"hobby" : [] string{"读书","爬山"},
+	}
+	fmt.Println("map data:",res)
+
+	//序列化
+	jsons, errs := json.Marshal(res)
+	if errs != nil {
+		fmt.Println("json marshal error:", errs)
+	}
+	fmt.Println("");
+	fmt.Println("map to json data:", string(jsons))
+
+	//反序列化
+	res2 := make(map[string]interface{})
+	errs = json.Unmarshal([]byte(jsons), &res2)
+	if errs != nil {
+		fmt.Println("json marshal error:", errs)
+	}
+
+	fmt.Println("")
+	fmt.Println("json to map data:", res2)
+
+	//编辑和删除
+	m3[3] = "汇编"
+	fmt.Println("add map3:", m3)
+	m3[1] = "CPlusPlus"
+	fmt.Println("modify map3:", m3)
+	delete(m3, 2)
+	fmt.Println("delete map3:", m3)
+  ```
+## 第四节 语法
+- 循环
+  > Go 的循环 条件语句放弃了圆括号
+  ```go
+  //类C写法
+  for init; condition; post {}
+
+  for condition {}
+
+  //类似for{;;}
+  for { }
+
+  //对for range格式对slipe、map、数组、字符串等进行迭代遍历
+  for key, value : range oldMap {
+    newMap[key] = value
+  }
+
+  for key : range oldMap
+  for key,_ := range oldMap
+
+  for _, value : range oldMap
+  ```
